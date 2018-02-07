@@ -16,8 +16,7 @@ $ docker run -d --name redisMaster redis:latest
 9a76064d1278a794ef7eab899d53b5811ea76c5ccbfc7d2854b029ac109b8177
 ```
 
-
-## Step 2 - Finding Running Containers
+## Step 2 - Finding Running Containers.
 
 ### Docker Ps Command.
 
@@ -247,4 +246,73 @@ $ docker logs 9a76064d1278a794ef7eab899d53b5811ea76c5ccbfc7d2854b029ac109b8177
 1:M 07 Feb 08:36:35.452 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. Tofix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
 1:M 07 Feb 08:36:35.452 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will createlatency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
 1:M 07 Feb 08:36:35.452 * Ready to accept connections
+```
+
+# Step 3 - Accessing Redis.
+
+### Docker Run Command.
+
+#### RedisHostPort Container.
+
+```
+$ docker run -d --name redisHostPort -p 6379:6379 redis:latest
+85f410d71560cef5e01568e48a6d7fb9f8fc7be473ca1edc687a73a21c06f314
+```
+
+# Step 4 - Accessing Redis.
+
+### Docker Run Command.
+
+#### RedisDynamic Container.
+
+```
+$ docker run -d --name redisDynamic -p 6379 redis:latest
+eb49d1d8b252dafd191456e6fd5e93094942e3f3bf3ca5c1bce2b440c978474e
+```
+
+#### Docker Port Command.
+
+```
+$ docker port redisDynamic 6379
+0.0.0.0:32768
+```
+
+#### Docker Ps Command.
+
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS          NAMES
+eb49d1d8b252        redis:latest        "docker-entrypoint..."   5 minutes ago       Up 5 minutes        0.0.0.0:32768->6379/tcp   redisDynamic
+85f410d71560        redis:latest        "docker-entrypoint..."   7 minutes ago       Up 7 minutes        0.0.0.0:6379->6379/tcp    redisHostPort
+9a76064d1278        redis               "docker-entrypoint..."   15 minutes ago      Up 15 minutes       6379/tcp          dreamy_edison
+```
+
+# Step 5 - Persisting Data.
+
+### Docker Run Command.
+
+#### RedisMapped Container.
+
+```
+$ docker run -d --name redisMapped -v "$PWD/data":/data redis
+ca8a0ec222db497d6a3c3b634869b568d33d07a00156916c4ef70a226507330d
+```
+
+# Step 6 - Running A Container In The Foreground.
+
+### Docker Run Command.
+
+#### Execute PS command inside Ubuntu image container.
+
+```
+$ docker run ubuntu ps
+  PID TTY          TIME CMD
+    1 ?        00:00:00 ps
+```
+
+#### Run Ubuntu image container in interactive mode.
+
+```
+$ docker run -it ubuntu /bin/bash
+root@876660122b63:/#
 ```
