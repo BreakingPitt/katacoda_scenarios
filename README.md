@@ -1,6 +1,6 @@
 # KataCoda Scenarios.
 
-## Description
+## Description.
 
 Katacoda is an interactive learning and training platform for software 
 developers. Each student is given access to a new environment without the need 
@@ -10,7 +10,7 @@ Katacoda also provides isolation for each student, so they can explore and push
 the limits of their learning skills without worry about breaking the environment 
 for fellow students.
 
-## Scenario List
+## Scenario List.
 
  - [Docker](docker)
  - [Kubernetes](kubernetes)
