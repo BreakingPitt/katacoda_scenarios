@@ -1,9 +1,2 @@
-# Ignore pycache directory...
-*__pycache__/
-*.pytest_cache/
-
-# Ignore exercism hidden directory...
-*.exercism/
-
 # OSX
 *.DS_Store
