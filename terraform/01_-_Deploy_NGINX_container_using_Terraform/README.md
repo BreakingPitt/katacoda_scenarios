@@ -229,7 +229,7 @@ docker ps
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                 NAMES
 77900be7fc14        bedece1f06cc        "nginx -g 'daemon ..."   2 minutes ago       Up 2 minutes        443/tcp, 0.0.0.0:32768->80/tcp   nginx-server
-``
+```
 
 You can inspect this in future using the terraform CLI
 
